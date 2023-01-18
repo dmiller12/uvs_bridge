@@ -14,7 +14,7 @@ ImageConverter::ImageConverter(ros::NodeHandle nh_)
 	error_pub = nh_.advertise<uvs::PointVector2D>("image_error", 10);
 	eef_pub = nh_.advertise<uvs::PointVector2D>("end_effector", 10);
 	cam1_sub = it_.subscribe("/cam1/image_raw", 1, &ImageConverter::cam1Callback, this);
-	cam2_sub = it_.subscribe("/cam1/image_raw", 1, &ImageConverter::cam2Callback, this);
+	cam2_sub = it_.subscribe("/cam2/image_raw", 1, &ImageConverter::cam2Callback, this);
 }
 
 ImageConverter::~ImageConverter()
@@ -76,12 +76,14 @@ cv::Ptr<cv::Tracker> ImageConverter::createTrackerByName(std::string trackerType
 
 void ImageConverter::image_error(std::vector<cv::Rect2d> v)
 { // TARGET - END EFFECTOR
-	uvs::PointVector2D pv;
-	uvs::Point2D pt;
+	uvs_bridge::PointVector2D pv;
+	uvs_bridge::Point2D pt;
 	// publish end effector position
+	// left frame
 	pt.x = (v[1].tl().x + v[1].br().x) / 2;
 	pt.y = (v[1].tl().y + v[1].br().y) / 2;
 	pv.points.push_back(pt);
+	// right frame
 	pt.x = (v[3].tl().x + v[3].br().x) / 2;
 	pt.y = (v[3].tl().y + v[3].br().y) / 2;
 	pv.points.push_back(pt);
@@ -124,6 +126,7 @@ void ImageConverter::spin()
 			}
 			multiTracker->update(frame);
 			v = multiTracker->getObjects();
+			// draw tracker
 			for (int i = 0; i < v.size(); i++) {
 				cv::rectangle(frame, v[i], CV_RGB(0,255,255), 2, 1);
 				// std::cout << v[i].tl().x << " " << v[i].br().x << std::endl;

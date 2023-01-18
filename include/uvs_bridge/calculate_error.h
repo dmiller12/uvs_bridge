@@ -12,10 +12,10 @@
 #include "std_msgs/String.h"
 #include "std_msgs/Bool.h" 
 #include "std_msgs/UInt32.h" 
-#include "uncalibrated_visual_servoing/ErrorVector.h"
-#include "uncalibrated_visual_servoing/Point2D.h"
-#include "uncalibrated_visual_servoing/PointVector2D.h"
-#include "uncalibrated_visual_servoing/utilities.h"
+#include "uvs_bridge/ErrorVector.h"
+#include "uvs_bridge/Point2D.h"
+#include "uvs_bridge/PointVector2D.h"
+#include "uvs_bridge/utilities.h"
 #include <sstream>
 #include <vector>
 #include <Eigen/Core>
@@ -69,9 +69,9 @@ class ErrorCalc
 		std::vector< std::vector<double> > get_error() { return current_error_vector; }
 		std::vector< std::vector<double> > get_error2() { return current_error_vector2; }
 
-		void callback_centers(const uncalibrated_visual_servoing::PointVector2D::ConstPtr& msg)
+		void callback_centers(const uvs_bridge::PointVector2D::ConstPtr& msg)
 		{
-			uncalibrated_visual_servoing::PointVector2D c = *msg;
+			uvs_bridge::PointVector2D c = *msg;
 			std::vector<Eigen::Vector2d> v;
 		    for (int i = 0; i < c.points.size(); ++i) {
 		        Eigen::Vector2d p;

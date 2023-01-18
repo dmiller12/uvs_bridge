@@ -31,8 +31,8 @@ ErrorCalc::ErrorCalc(ros::NodeHandle nh_)
 	// sub_task_ids = nh_.subscribe("/task_ids", 3, &ErrorCalc::callback_task_ids, this);
 	// sub_calculate = nh_.subscribe("/calculate", 3, &ErrorCalc::callback_calculate, this);
 	sub_trackers = nh_.subscribe("/user_interface/tracker_position", 3, &ErrorCalc::callback_centers, this);
-	pub_end_effector_position = nh_.advertise<uncalibrated_visual_servoing::PointVector2D>("/eef_pos", 10);
-	pub_error = nh_.advertise<uncalibrated_visual_servoing::ErrorVector>("/image_error", 10);
+	pub_end_effector_position = nh_.advertise<uvs_bridge::PointVector2D>("/eef_pos", 10);
+	pub_error = nh_.advertise<uvs_bridge::ErrorVector>("/image_error", 10);
 }
 
 ErrorCalc::~ErrorCalc()
