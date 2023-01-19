@@ -10,8 +10,8 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/tracking.hpp>
-#include "uvs/Point2D.h"
-#include "uvs/PointVector2D.h"
+#include "uvs_bridge/Point2D.h"
+#include "uvs_bridge/PointVector2D.h"
 
 
 static const std::string OPENCV_WINDOW = "UVS";

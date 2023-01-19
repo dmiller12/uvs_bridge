@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(uvs_bridge)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -158,11 +158,11 @@ target_link_libraries(user_interface
   ${OpenCV_LIBRARIES}
 )
 
-add_executable(calculate_error src/calculate_error.cpp)
-target_link_libraries(calculate_error
-  ${catkin_LIBRARIES}
-  ${Eigen_LIBRARIES}
-)
+#add_executable(calculate_error src/calculate_error.cpp)
+#target_link_libraries(calculate_error
+#  ${catkin_LIBRARIES}
+#  ${Eigen_LIBRARIES}
+#)
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
