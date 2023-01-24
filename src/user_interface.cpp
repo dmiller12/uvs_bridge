@@ -11,8 +11,8 @@ ImageConverter::ImageConverter(ros::NodeHandle nh_)
 	clicked_points.clear();
 	cv::namedWindow(OPENCV_WINDOW);
 	cv::setMouseCallback(OPENCV_WINDOW, &ImageConverter::mouseHandleStatic, (void*)this);
-	error_pub = nh_.advertise<uvs::PointVector2D>("image_error", 10);
-	eef_pub = nh_.advertise<uvs::PointVector2D>("end_effector", 10);
+	error_pub = nh_.advertise<uvs_bridge::PointVector2D>("image_error", 10);
+	eef_pub = nh_.advertise<uvs_bridge::PointVector2D>("end_effector", 10);
 	cam1_sub = it_.subscribe("/cam1/image_raw", 1, &ImageConverter::cam1Callback, this);
 	cam2_sub = it_.subscribe("/cam2/image_raw", 1, &ImageConverter::cam2Callback, this);
 }
